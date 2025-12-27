@@ -6,7 +6,7 @@ export default function ProtectedRoute({
     children,
 }: {
     children: JSX.Element
-}) {
+}) { 
     // Comment here to bypass authentication
     const user = useAuthStore((state) => state.user)
 
