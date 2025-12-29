@@ -29,6 +29,13 @@ export const useAuthStore = create<AuthState>((set) => ({
   login: async ({ email, password, rememberMe }) => {
     try {
       set({ loading: true, error: null })
+       
+      // By pass login for development
+      if(email === "admin@gmail.com" && password === "1111") {
+        set({ user: { id: "1", email: "admin@gmail.com", name: "Admin" } })
+        localStorage.setItem("accessToken", "1234567890")
+        return
+      }
 
       const res = await api.post("/auth/login", {
         email,
